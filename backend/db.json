@@ -36,5 +36,25 @@
       "salario": "2000"
     }
   ],
+  "curriculos": [
+    {
+      "id": 1,
+      "usuarioId": 1,
+      "titulo": "Desenvolvedor Front-end",
+      "formacao": "Tecnologia em Análise e Desenvolvimento de Sistemas - Fatec",
+      "experiencia": "3 anos com Angular, 2 anos com React",
+      "habilidades": "Angular, TypeScript, CSS, HTML, RxJS",
+      "linkedin": "linkedin.com/in/dev-front"
+    },
+    {
+      "id": 2,
+      "usuarioId": 2,
+      "titulo": "Desenvolvedor Backend",
+      "formacao": "Bacharelado em Ciência da Computação - USP",
+      "experiencia": "5 anos com Node.js, 3 anos com Python",
+      "habilidades": "Node.js, Python, PostgreSQL, MongoDB",
+      "linkedin": "linkedin.com/in/dev-back"
+    }
+  ],
   "$schema": "./node_modules/json-server/schema.json"
 }

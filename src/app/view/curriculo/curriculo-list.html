@@ -1,0 +1,18 @@
+<section class="listar-curriculos">
+  <h2>Currículos Disponíveis</h2>
+
+  @if (curriculos.length > 0) {
+    @for (curriculo of curriculos; track curriculo.id) {
+      <div class="curriculo-card">
+        <h3>{{ curriculo.titulo }}</h3>
+        <p><strong>Usuário ID:</strong> {{ curriculo.usuarioId }}</p>
+        <p><strong>Formação:</strong> {{ curriculo.formacao }}</p>
+        <p><strong>Experiência:</strong> {{ curriculo.experiencia }}</p>
+        <p><strong>Habilidades:</strong> {{ curriculo.habilidades }}</p>
+        <p><strong>LinkedIn:</strong> {{ curriculo.linkedin }}</p>
+      </div>
+    }
+  } @else {
+    <p class="mensagem-vazia">Nenhum currículo cadastrado no sistema.</p>
+  }
+</section>

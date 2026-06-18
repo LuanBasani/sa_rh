@@ -1,4 +1,4 @@
-export class Vaga {
+export class Vagas {
   // //atributos
   // id: number = 0;
   // nome: string = "";
@@ -21,7 +21,7 @@ export class Vaga {
     public nome: string,
     public foto: string,
     public descricao: string,
-    public salario: number
+    public salario: number,
   ) {}
 
   //métodos
@@ -38,7 +38,7 @@ export class Vaga {
   }
 
   // FromMAp = API => OBJ
-  static fromMap(map: any): Vaga {
-    return new Vaga(map.id, map.nome, map.foto, map.descricao, map.salario);
+  fromMap(map: any): Vagas {
+    return new Vagas(map.id, map.nome, map.foto, map.descricao, map.salario);
   }
 }
