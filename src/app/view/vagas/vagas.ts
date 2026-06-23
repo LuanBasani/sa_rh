@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Api } from '../../service/api';
-import { Vaga } from '../../model/vaga.model';
+import { Vaga } from '../../model/vaga';
 
 @Component({
   selector: 'app-vagas',

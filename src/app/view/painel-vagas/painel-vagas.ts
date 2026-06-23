@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Vaga } from '../../model/vaga.model';
+import { Vaga } from '../../model/vaga';
 
 import { FormsModule } from '@angular/forms';
 import { Api } from '../../service/api';

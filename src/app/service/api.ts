@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Vaga } from '../model/vaga.model';
+import { Vaga } from '../model/vaga';
 
 @Injectable({
   providedIn: 'root',

@@ -4,8 +4,8 @@
       "id": "1",
       "nome": "Dev front",
       "foto": "foto1.jpg",
-      "descricao": "Trampar com visual",
-      "salario": "6000"
+      "descricao": "FAZER SITES",
+      "salario": 7000
     },
     {
       "id": "2",
@@ -33,12 +33,12 @@
       "nome": "Trampar com back",
       "foto": "foto1.jpg",
       "descricao": "Trampar com o back end",
-      "salario": "2000"
+      "salario": 2000
     }
   ],
   "curriculos": [
     {
-      "id": 1,
+      "id": "1",
       "usuarioId": 1,
       "titulo": "Desenvolvedor Front-end",
       "formacao": "Tecnologia em Análise e Desenvolvimento de Sistemas - Fatec",
@@ -47,7 +47,7 @@
       "linkedin": "linkedin.com/in/dev-front"
     },
     {
-      "id": 2,
+      "id": "2",
       "usuarioId": 2,
       "titulo": "Desenvolvedor Backend",
       "formacao": "Bacharelado em Ciência da Computação - USP",

@@ -1,12 +1,12 @@
 # Documentação de Especificação de Requisitos de Software (SRS)
 
-Documento baseado na ISO/IEEE 29148:2018
+Documento baseado na ISO/IEC/IEEE 29148:2018
 
-# 💼 Plataforma RH - Módulo de Vagas
+# 💼 Plataforma RH
 
-**Padrão:** ISO/IEC/IEEE 29148:2018
-**Versão:** 1.0.0
-**Data:** 2026-06-11
+**Padrão:** ISO/IEC/IEEE 29148:2018  
+**Versão:** 1.1.0  
+**Data:** 2026-06-23  
 **Autor:** LuanBasani
 
 ---
@@ -15,11 +15,11 @@ Documento baseado na ISO/IEEE 29148:2018
 
 ## 1.1 Propósito
 
-Este documento descreve o sistema **Plataforma RH - Módulo de Vagas**, com o objetivo de:
+Este documento descreve o sistema **Plataforma RH**, composto pelos módulos de gerenciamento de vagas e currículos, com o objetivo de:
 
-* Definir funcionalidades de gerenciamento de vagas
-* Padronizar entendimento entre stakeholders
-* Servir como base para desenvolvimento e testes
+- Definir funcionalidades do sistema
+- Padronizar entendimento entre stakeholders
+- Servir como base para desenvolvimento, testes e manutenção
 
 ---
 
@@ -27,35 +27,52 @@ Este documento descreve o sistema **Plataforma RH - Módulo de Vagas**, com o ob
 
 O sistema permite:
 
-* Visualização de vagas disponíveis
-* Gerenciamento administrativo de vagas (criar, editar, excluir)
-* Persistência de dados em JSON Server
+### Módulo de Vagas
+
+- Visualização de vagas disponíveis
+- Cadastro de vagas
+- Edição de vagas
+- Exclusão de vagas
+
+### Módulo de Currículos
+
+- Cadastro de currículos
+- Edição de currículos
+- Exclusão de currículos
+- Visualização de currículos
+
+### Persistência
+
+- Armazenamento de dados utilizando JSON Server
 
 O sistema foi desenvolvido utilizando:
 
-* Angular 21.2.0
-* TypeScript 5.9.2
-* RxJS 7.8.0
-* JSON Server
-* HTML5
-* SCSS
+- Angular 21.2.0
+- TypeScript 5.9.2
+- RxJS 7.8.0
+- JSON Server
+- HTML5
+- SCSS
 
 ---
 
 ## 1.3 Definições
 
 | Termo | Definição |
-|-------|-----------|
-| Vaga | Posição em aberto na empresa com dados: nome, foto, descrição e salário |
-| Administrador | Usuário com acesso ao painel de gerenciamento de vagas |
-| API | Interface que conecta o frontend ao JSON Server |
-| JSON Server | Servidor HTTP simulado baseado em arquivo JSON |
+|---------|---------|
+| Vaga | Oportunidade de emprego cadastrada na plataforma |
+| Currículo | Conjunto de informações profissionais do candidato |
+| Administrador | Usuário responsável pelo gerenciamento de vagas |
+| Candidato | Usuário responsável pelo gerenciamento de currículos |
+| API | Interface de comunicação entre frontend e backend |
+| JSON Server | Backend simulado baseado em arquivo JSON |
 
 ### Acrônimos
 
-* RF — Requisito Funcional
-* RNF — Requisito Não Funcional
-* LR — Regra de Negócio
+- RF — Requisito Funcional
+- RNF — Requisito Não Funcional
+- LR — Regra de Negócio
+- CRUD — Create, Read, Update e Delete
 
 ---
 
@@ -66,7 +83,7 @@ O sistema foi desenvolvido utilizando:
 ```mermaid
 flowchart LR
     Usuario --> Interface["Interface Angular"]
-    Interface --> API["Serviço Api"]
+    Interface --> API["Serviços"]
     API --> JSONServer["JSON Server"]
     JSONServer --> DB["db.json"]
 ```
@@ -77,48 +94,62 @@ flowchart LR
 
 O sistema deve:
 
-* Listar vagas disponíveis
-* Visualizar página inicial
-* Criar novas vagas
-* Editar vagas existentes
-* Excluir vagas
-* Persistir dados no backend
+### Vagas
+
+- Listar vagas disponíveis
+- Criar novas vagas
+- Editar vagas existentes
+- Excluir vagas
+
+### Currículos
+
+- Criar currículos
+- Editar currículos
+- Excluir currículos
+- Visualizar currículos
+
+### Sistema
+
+- Persistir dados no backend
+- Exibir feedback ao usuário
+- Atualizar informações em tempo real após operações CRUD
 
 ---
 
 ## 2.3 Classes de Usuários
 
 | Usuário | Descrição |
-|---------|-----------|
-| Visitante | Visualiza vagas na página inicial e listagem |
-| Administrador | Acessa o painel para criar, editar e excluir vagas |
+|---------|---------|
+| Visitante | Visualiza vagas disponíveis |
+| Candidato | Cadastra, edita, visualiza e exclui currículos |
+| Administrador | Gerencia vagas e visualiza currículos cadastrados |
 
 ---
 
 ## 2.4 Ambiente Operacional
 
-* Navegador Web moderno (Chrome, Firefox, Safari, Edge)
-* Node.js 16+ para executar JSON Server
-* Angular CLI 21.2.13
-* Sistema Operacional: Windows, macOS ou Linux
+- Navegador Web moderno (Chrome, Firefox, Safari, Edge)
+- Node.js 16+
+- Angular CLI 21.2.13
+- Sistema Operacional Windows, Linux ou macOS
 
 ---
 
 ## 2.5 Restrições
 
-* Sistema executado localmente
-* Sem autenticação de usuários
-* Sem controle de perfis
-* Sem validação avançada de dados
-* Sem integração com APIs externas
+- Sistema executado localmente
+- Sem autenticação de usuários
+- Usuário logado simulado via `usuarioId`
+- Sem integração com APIs externas
+- Backend simulado utilizando JSON Server
 
 ---
 
 ## 2.6 Suposições
 
-* Usuário possui conhecimento básico de informática
-* Navegador com JavaScript habilitado
-* Acesso ao servidor JSON Server ativo na porta 3010
+- Navegador com JavaScript habilitado
+- JSON Server executando na porta 3010
+- Usuário possui acesso ao ambiente de desenvolvimento
 
 ---
 
@@ -132,51 +163,108 @@ O sistema deve:
 
 **Critérios de Aceitação:**
 
-* Listar vagas a partir do backend
-* Exibir: nome, foto, descrição e salário
-* Carregar automaticamente ao abrir página
+- Buscar vagas do backend
+- Exibir nome, foto, descrição e salário
+- Carregamento automático ao abrir a página
 
 ---
 
-### RF-002 — Gerenciar Vagas - Criar
+### RF-002 — Criar Vaga
 
 **Descrição:** Permitir cadastro de novas vagas.
 
 **Critérios de Aceitação:**
 
-* Nome obrigatório
-* Foto obrigatória
-* Descrição obrigatória
-* Salário obrigatório
-* Validação de campos vazios
-* Feedback ao usuário (alerta)
+- Nome obrigatório
+- Foto obrigatória
+- Descrição obrigatória
+- Salário obrigatório
+- Feedback ao usuário
 
 ---
 
-### RF-003 — Gerenciar Vagas - Editar
+### RF-003 — Editar Vaga
 
-**Descrição:** Permitir edição de vagas existentes.
+**Descrição:** Permitir alteração de vagas existentes.
 
 **Critérios de Aceitação:**
 
-* Selecionar vaga para editar
-* Modificar dados da vaga
-* Validação de campos obrigatórios
-* Atualizar no backend
-* Feedback ao usuário (alerta)
+- Selecionar vaga
+- Atualizar informações
+- Persistir alterações no backend
 
 ---
 
-### RF-004 — Gerenciar Vagas - Excluir
+### RF-004 — Excluir Vaga
 
-**Descrição:** Permitir exclusão de vagas.
+**Descrição:** Permitir remoção de vagas.
 
 **Critérios de Aceitação:**
 
-* Selecionar vaga para deletar
-* Remover do backend
-* Atualizar lista
-* Feedback ao usuário (alerta)
+- Solicitar confirmação
+- Remover do backend
+- Atualizar listagem automaticamente
+
+---
+
+### RF-005 — Criar Currículo
+
+**Descrição:** Permitir cadastro de currículos.
+
+**Critérios de Aceitação:**
+
+- Título obrigatório
+- Formação obrigatória
+- Experiência obrigatória
+- Habilidades obrigatórias
+- LinkedIn opcional
+- Vinculação através de usuarioId
+
+---
+
+### RF-006 — Editar Currículo
+
+**Descrição:** Permitir edição de currículos existentes.
+
+**Critérios de Aceitação:**
+
+- Selecionar currículo
+- Carregar dados no formulário
+- Atualizar backend
+
+---
+
+### RF-007 — Excluir Currículo
+
+**Descrição:** Permitir exclusão de currículos.
+
+**Critérios de Aceitação:**
+
+- Solicitar confirmação
+- Remover currículo do backend
+- Atualizar listagem
+
+---
+
+### RF-008 — Listar Currículos
+
+**Descrição:** Permitir visualização de currículos cadastrados.
+
+**Critérios de Aceitação:**
+
+- Buscar dados do backend
+- Exibir título, formação e habilidades
+
+---
+
+### RF-009 — Vincular Currículo ao Usuário
+
+**Descrição:** Todo currículo deve pertencer a um usuário.
+
+**Critérios de Aceitação:**
+
+- Utilizar campo `usuarioId`
+- Associar currículo ao usuário logado
 
 ---
 
@@ -184,47 +272,52 @@ O sistema deve:
 
 ### RNF-001 — Responsividade
 
-O sistema deve funcionar adequadamente em diferentes resoluções de tela.
+O sistema deve funcionar em diferentes resoluções de tela.
 
 ---
 
 ### RNF-002 — Desempenho
 
-Tempo de carregamento de vagas inferior a 2 segundos em ambiente local.
+Tempo de carregamento inferior a 2 segundos em ambiente local.
 
 ---
 
 ### RNF-003 — Persistência de Dados
 
-Utilizar JSON Server para armazenar dados em arquivo db.json.
+Utilizar JSON Server com armazenamento em `db.json`.
 
 ---
 
-### RNF-004 — Framework UI
+### RNF-004 — Framework
 
-Utilização do Angular 21.2.0 com TypeScript para estrutura e lógica.
+Utilização do Angular 21 com TypeScript.
 
 ---
 
 ### RNF-005 — Organização do Código
 
-Separação adequada entre:
+Separação entre:
 
-* Componentes (apresentação)
-* Serviços (lógica de negócio)
-* Modelos (tipos de dados)
+- Componentes
+- Serviços
+- Modelos
 
 ---
 
 # 4. Regras de Negócio
 
 | Código | Regra |
-|--------|-------|
-| LR-001 | Todos os campos de vaga são obrigatórios |
-| LR-002 | Salário deve ser um valor numérico |
-| LR-003 | Vaga deletada não pode ser recuperada |
-| LR-004 | Lista de vagas é atualizada após cada operação |
-| LR-005 | API se conecta ao JSON Server na porta 3010 |
+|----------|----------|
+| LR-001 | Todos os campos da vaga são obrigatórios |
+| LR-002 | Salário deve ser numérico |
+| LR-003 | Vagas removidas não podem ser recuperadas |
+| LR-004 | Lista de vagas deve ser atualizada após alterações |
+| LR-005 | Sistema utiliza JSON Server na porta 3010 |
+| LR-006 | Todo currículo deve possuir usuarioId |
+| LR-007 | Título do currículo é obrigatório |
+| LR-008 | Formação é obrigatória |
+| LR-009 | Experiência é obrigatória |
+| LR-010 | Habilidades são obrigatórias |
 
 ---
 
@@ -236,11 +329,17 @@ Separação adequada entre:
 flowchart LR
     Visitante --> UC1["Visualizar Página Inicial"]
     Visitante --> UC2["Listar Vagas"]
-    
+
+    Candidato --> UC6["Criar Currículo"]
+    Candidato --> UC7["Editar Currículo"]
+    Candidato --> UC8["Excluir Currículo"]
+    Candidato --> UC9["Visualizar Currículo"]
+
     Admin --> UC3["Criar Vaga"]
     Admin --> UC4["Editar Vaga"]
     Admin --> UC5["Excluir Vaga"]
     Admin --> UC2
+    Admin --> UC9
 ```
 
 ---
@@ -256,19 +355,35 @@ class Vaga {
     +foto: string
     +descricao: string
     +salario: number
-    +toMap()
-    +fromMap()
+}
+
+class Curriculo {
+    +id: number
+    +usuarioId: number
+    +titulo: string
+    +formacao: string
+    +experiencia: string
+    +habilidades: string
+    +linkedin: string
 }
 
 class Api {
-    -apiUrl: string
     +getVagas()
     +cadastrarVaga()
     +atualizarVaga()
     +removerVaga()
 }
 
+class CurriculoService {
+    +getCurriculos()
+    +getCurriculosByUsuarioId()
+    +postCurriculo()
+    +putCurriculo()
+    +deleteCurriculo()
+}
+
 Api --> Vaga
+CurriculoService --> Curriculo
 ```
 
 ---
@@ -276,59 +391,32 @@ Api --> Vaga
 # 6. Estrutura do Projeto
 
 ```txt
-sa-rh-completo/
-│
-├── src/
-│   ├── app/
-│   │   ├── view/
-│   │   │   ├── inicio/
-│   │   │   │   ├── inicio.ts
-│   │   │   │   ├── inicio.html
-│   │   │   │   └── inicio.scss
-│   │   │   ├── vagas/
-│   │   │   │   ├── vagas.ts
-│   │   │   │   ├── vagas.html
-│   │   │   │   └── vagas.scss
-│   │   │   ├── painel-vagas/
-│   │   │   │   ├── painel-vagas.ts
-│   │   │   │   ├── painel-vagas.html
-│   │   │   │   └── painel-vagas.scss
-│   │   │   └── fragmentos/
-│   │   │       ├── header/
-│   │   │       │   ├── header.ts
-│   │   │       │   └── header.html
-│   │   │       └── footer/
-│   │   │           ├── footer.ts
-│   │   │           └── footer.html
-│   │   │
-│   │   ├── service/
-│   │   │   └── api.ts
-│   │   │
-│   │   ├── model/
-│   │   │   └── vaga.model.ts
-│   │   │
-│   │   ├── app.routes.ts
-│   │   └── app.ts
-│   │
-│   ├── assets/
-│   ├── styles/
-│   └── index.html
-│
-├── backend/
-│   └── db.json
-│
-├── angular.json
-├── package.json
-├── tsconfig.json
-├── README.md
-└── .gitignore
+src/
+└── app/
+    ├── model/
+    │   ├── vaga.ts
+    │   └── curriculo.ts
+    │
+    ├── service/
+    │   ├── api.ts
+    │   └── curriculo.service.ts
+    │
+    ├── view/
+    │   ├── inicio/
+    │   ├── vagas/
+    │   ├── painel-vagas/
+    │   ├── painel-curriculos/
+    │   └── fragmentos/
+    │
+    ├── app.routes.ts
+    └── app.ts
 ```
 
 ---
 
 # 7. Banco de Dados
 
-O banco está disponível em:
+Localização:
 
 ```txt
 backend/db.json
@@ -338,22 +426,8 @@ backend/db.json
 
 ```json
 {
-  "vagas": [
-    {
-      "id": "1",
-      "nome": "Dev front",
-      "foto": "foto1.jpg",
-      "descricao": "Trampar com visual",
-      "salario": "6000"
-    },
-    {
-      "id": "2",
-      "nome": "Desenvolver BackEnd Pleno",
-      "foto": "https://via.placeholder.com/300x200?text=Backend+Pleno",
-      "descricao": "Trabalhar com Desenvolvimento Web",
-      "salario": 9000
-    }
-  ]
+  "vagas": [],
+  "curriculos": []
 }
 ```
 
@@ -361,33 +435,27 @@ backend/db.json
 
 # 8. Como Executar
 
-### 8.1 Instalar dependências
+### Instalar dependências
 
 ```bash
 npm install
 ```
 
-### 8.2 Iniciar JSON Server (terminal 1)
+### Iniciar JSON Server
 
 ```bash
 npx json-server --watch backend/db.json --port 3010
 ```
 
-### 8.3 Iniciar Angular (terminal 2)
-
-```bash
-npm start
-```
-
-Ou manualmente:
+### Iniciar Angular
 
 ```bash
 ng serve
 ```
 
-### 8.4 Acessar a Aplicação
+### Acessar
 
-```
+```txt
 http://localhost:4200
 ```
 
@@ -396,35 +464,46 @@ http://localhost:4200
 # 9. Análise de Risco
 
 | Risco | Impacto | Mitigação |
-|-------|---------|-----------|
-| Perda de conexão com JSON Server | Alto | Validação de conexão |
-| Dados inválidos no formulário | Médio | Validação de campos obrigatórios |
-| Inconsistência de dados | Médio | Atualizar lista após operações |
-| Corrupção de db.json | Alto | Backup manual do arquivo |
+|---------|---------|---------|
+| Falha do JSON Server | Alto | Reiniciar serviço |
+| Dados inválidos | Médio | Validação dos formulários |
+| Inconsistência de dados | Médio | Atualização automática das listas |
+| Corrupção do db.json | Alto | Backup periódico |
 
 ---
 
 # 10. Controle de Versão
 
 | Versão | Data | Autor | Alteração |
-|--------|------|-------|-----------|
-| 1.0.0 | 2026-06-11 | LuanBasani | Versão inicial com CRUD de vagas |
+|---------|---------|---------|---------|
+| 1.0.0 | 2026-06-11 | LuanBasani | CRUD de vagas |
+| 1.1.0 | 2026-06-23 | LuanBasani | Implementação do módulo de currículos |
 
 ---
 
 # 11. Funcionalidades Implementadas
 
-* Página inicial com navegação
-* Listagem de vagas
-* Painel administrativo
-* Criar nova vaga
-* Editar vaga existente
-* Excluir vaga
-* Componentes Header e Footer
-* Serviço de conexão com API (GET, POST, PUT, DELETE)
-* Modelo Vaga com mapeamento de dados
-* Roteamento com 3 rotas principais
-* Validação de campos obrigatórios
-* Feedback visual com alertas ao usuário
-* Persistência de dados em JSON Server
-* Integração com backend na porta 3010
+## Vagas
+
+- Listagem de vagas
+- Cadastro de vagas
+- Edição de vagas
+- Exclusão de vagas
+
+## Currículos
+
+- Cadastro de currículos
+- Edição de currículos
+- Exclusão de currículos
+- Listagem de currículos
+- Vinculação por usuarioId
+
+## Sistema
+
+- Componentes Header e Footer
+- Roteamento Angular
+- Integração com JSON Server
+- Serviços HTTP (GET, POST, PUT e DELETE)
+- Validação de campos obrigatórios
+- Feedback visual ao usuário
+- Persistência de dados local

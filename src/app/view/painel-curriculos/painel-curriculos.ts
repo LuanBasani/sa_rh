@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Curriculo } from '../../model/curriculo.model';
+import { Curriculo } from '../../model/curriculo';
 import { CurriculoService } from '../../service/curriculo.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
